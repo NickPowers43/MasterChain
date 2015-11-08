@@ -93,11 +93,15 @@ app.get('/loginfinger/', function (req, res) {
 	var output = exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
 	var lines = output.split("\n");
 	
-	res.send(output);
-	res.send("\n\n\n\n");
-	res.send(lines[lines.length - 2]);
-	res.send(lines[lines.length - 1]);
-	res.send("EOF");
+	var sendoutput = "";
+	
+	sendoutput += (output);
+	sendoutput += ("\n\n\n\n");
+	sendoutput += (lines[lines.length - 2]);
+	sendoutput += (lines[lines.length - 1]);
+	sendoutput += ("EOF");
+	
+	res.send(sendoutput);
 	
 	if(false)
 	{
