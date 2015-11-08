@@ -56,25 +56,34 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
 
 app.post('/signupfinger/', function (req, res) {
 	
-	req.on('finger', function(chunk) {
+	req.on('image', function(chunk) {
 		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'a\'");
     });
+	
+	//push new contract that initializes identity
 	
 	res.status(200);
 });
 
 app.post('/signupselfie/', function (req, res) {
 	
-	req.on('selfie', function(chunk) {
+	req.on('image', function(chunk) {
 		fs.writeFile('b.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'b\'");
     });
 	
+	//push new contract that initializes identity
+	
 	res.status(200);
 });
 
-app.put('/login/', function (req, res) {
+app.get('/loginfinger/', function (req, res) {
+	
+	req.on('image', function(chunk) {
+		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
+		console.log("writing image \'a\'");
+    });
 	
 	if(false)
 	{
@@ -84,6 +93,27 @@ app.put('/login/', function (req, res) {
 	{
 		res.status(500);
 	}
+});
+
+app.get('/loginselfie/', function (req, res) {
+	
+	req.on('image', function(chunk) {
+		fs.writeFile('b.bmp', chunk, function (err) { if(err) throw err; });
+		console.log("writing image \'b\'");
+    });
+	
+	if(false)
+	{
+		res.status(200);
+	}
+	else
+	{
+		res.status(500);
+	}
+});
+
+app.put('/login/', function (req, res) {
+	
 });
 
 var server = app.listen(3000, function () {
