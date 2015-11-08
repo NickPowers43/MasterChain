@@ -72,7 +72,7 @@ app.post('/signupfinger/', function (req, res) {
 app.post('/signupselfie/', function (req, res) {
 	
 	req.on('image', function(chunk) {
-		fs.writeFile('b.bmp', chunk, function (err) { if(err) throw err; });
+		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'b\'");
     });
 	
@@ -95,10 +95,7 @@ app.get('/loginfinger/', function (req, res) {
 	
 	var sendoutput = "";
 	
-	sendoutput += (output);
-	sendoutput += ("\n\n\n\n");
 	sendoutput += (lines[lines.length - 2]);
-	sendoutput += (lines[lines.length - 1]);
 	sendoutput += ("EOF");
 	
 	res.send(sendoutput);
@@ -116,7 +113,7 @@ app.get('/loginfinger/', function (req, res) {
 app.get('/loginselfie/', function (req, res) {
 	
 	req.on('image', function(chunk) {
-		fs.writeFile('b.bmp', chunk, function (err) { if(err) throw err; });
+		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'b\'");
     });
 	
