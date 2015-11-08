@@ -1,0 +1,75 @@
+{
+  "code": "contract Identity {\r\n\r\n\tuint pan;\r\n\r\n\tuint[] selfie;\r\n\tuint selfieWidth;\r\n\tuint selfieHeight;\r\n\r\n\tuint[] fp;\r\n\tuint fpWidth;\r\n\tuint fpHeight;\r\n\r\n\tuint dlNumber;\r\n\r\n\tuint fico;\r\n\r\n\tfunction Identity(uint pan_, uint[] selfie_, uint selfieWidth_, uint selfieHeight_, uint[] fp_, uint fpWidth_, uint fpHeight_, uint dlNumber_, uint fico_) {\r\n\r\n\t\tpan = pan_;\r\n\r\n\t\tselfie = selfie_;\r\n\t\tselfieWidth = selfieWidth_;\r\n\t\tselfieHeight = selfieHeight_;\r\n\r\n\t\tfp = fp_;\r\n\t\tfpWidth = fpWidth_;\r\n\t\tfpHeight = fpHeight_;\r\n\r\n\t\tdlNumber = dlNumber_;\r\n\r\n\t\tfico = fico_;\r\n\t}\r\n}",
+  "name": "Identity",
+  "vmCode": "60606040526040516101b23803806101b28339016040526060805190602001805160600190602001805190602001805190602001805160600190602001805190602001805190602001805190602001805190602001505b8860006000508190555087600160005090805190602001908280548282559060005260206000209081019282156100ad579160200282015b828111156100ac57825182600050559160200191906001019061008e565b5b5090506100d891906100ba565b808211156100d457600081815060009055506001016100ba565b5090565b50508660026000508190555085600360005081905550846004600050908051906020019082805482825590600052602060002090810192821561013b579160200282015b8281111561013a57825182600050559160200191906001019061011c565b5b5090506101669190610148565b808211156101625760008181506000905550600101610148565b5090565b5050836005600050819055508260066000508190555081600760005081905550806008600050819055505b505050505050505050600a806101a86000396000f30060606040526008565b00",
+  "symTab": {
+    "pan": {
+      "atStorageKey": "0",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "selfieHeight": {
+      "atStorageKey": "3",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "selfie": {
+      "atStorageKey": "1",
+      "bytesUsed": "20",
+      "jsType": "Array",
+      "arrayElement": {
+        "bytesUsed": "20",
+        "jsType": "Int",
+        "solidityType": "uint256"
+      },
+      "arrayNewKeyEach": "1",
+      "arrayDataStart": "b10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6",
+      "solidityType": "uint256[]"
+    },
+    "dlNumber": {
+      "atStorageKey": "7",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "fico": {
+      "atStorageKey": "8",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "selfieWidth": {
+      "atStorageKey": "2",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "fpHeight": {
+      "atStorageKey": "6",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "fpWidth": {
+      "atStorageKey": "5",
+      "bytesUsed": "20",
+      "jsType": "Int",
+      "solidityType": "uint256"
+    },
+    "fp": {
+      "atStorageKey": "4",
+      "bytesUsed": "20",
+      "jsType": "Array",
+      "arrayElement": {
+        "bytesUsed": "20",
+        "jsType": "Int",
+        "solidityType": "uint256"
+      },
+      "arrayNewKeyEach": "1",
+      "arrayDataStart": "8a35acfbc15ff81a39ae7d344fd709f28e8600b4aa8c65c6b64bfe7fe36bd19b",
+      "solidityType": "uint256[]"
+    }
+  }
+}

@@ -1,4 +1,6 @@
 
+var Solidity = require('blockapps-js').Solidity
+var Duo = require('duo.js');
 var shellJs = require('shelljs/global');
 var duo = require('duo_web');
 var ntpClient = require('ntp-client');
@@ -39,10 +41,6 @@ app.use(session({resave: true,
                  cookie: { maxAge: 60000 }}));
 
 app.use('/', home);
-app.use('/login', login);
-app.use('/contracts', contract);
-app.use('/examples', examples);
-
 app.use('/css', express.static('css'));
 
 ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
@@ -55,7 +53,20 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
     console.log(date);
 });
 
+var hashI = 0;
+var hashes = [
+	
+];
+
 app.post('/signupfinger/', function (req, res) {
+	
+	var code = fs.open('contracts/Identity.sol', 'r', function (err) { if(err) throw err; });
+	var privkey = "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281";
+	Solidity(code).newContract(privkey, {"value": 100}).then(function(contract) {
+		contract.state.Identity(1, [1],1,1,[1],1,1,1,1).callFrom(privkey);
+	});
+	
+	sig_request = sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281", "needham.patrick@gmail.com");
 	
 	console.log(req.body);
 	console.log(req.params);
@@ -68,9 +79,11 @@ app.post('/signupfinger/', function (req, res) {
 	
 	//push new contract that initializes identity
 	
-	res.send("It Works!");
+	res.send("" + {"hash":hashes[hashI]});
 	
 	res.status(200);
+	
+	hashI++;
 });
 
 app.post('/signupselfie/', function (req, res) {
@@ -89,10 +102,11 @@ app.post('/signupselfie/', function (req, res) {
 
 app.get('/loginfinger/', function (req, res) {
 	
-	//req.on('image', function(chunk) {
-	//	fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
-	//	console.log("writing image \'a\'");
-    //});
+	//ask user if they want to approve attempt
+	
+	req.on('image', function(chunk) {
+		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
+    });
 	
 	var output = exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
 	var lines = output.split("\n");
@@ -100,17 +114,18 @@ app.get('/loginfinger/', function (req, res) {
 	var sendoutput = "";
 	
 	sendoutput += (lines[lines.length - 2]);
-	sendoutput += ("EOF");
 	
 	res.send(sendoutput);
 	
-	if(false)
+	if(sendoutput < 1.0 && sendoutput > -1.0)
 	{
-		//res.status(200);
+		res.body("True");
+		res.status(200);
 	}
 	else
 	{
-		//res.status(500);
+		res.body("False");
+		res.status(500);
 	}
 });
 
@@ -118,21 +133,27 @@ app.get('/loginselfie/', function (req, res) {
 	
 	req.on('image', function(chunk) {
 		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
-		console.log("writing image \'b\'");
     });
 	
-	if(false)
+	var output = exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
+	var lines = output.split("\n");
+	
+	var sendoutput = "";
+	
+	sendoutput += (lines[lines.length - 2]);
+	
+	res.send(sendoutput);
+	
+	if(sendoutput < 1.0 && sendoutput > -1.0)
 	{
+		res.body("True");
 		res.status(200);
 	}
 	else
 	{
+		res.body("False");
 		res.status(500);
 	}
-});
-
-app.put('/login/', function (req, res) {
-	
 });
 
 var server = app.listen(3000, function () {
