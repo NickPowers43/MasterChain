@@ -54,12 +54,18 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
     console.log(date);
 });
 
-app.put('/signup/', function (req, res) {
+app.put('/signupfinger/', function (req, res) {
 	
 	req.on('finger', function(chunk) {
 		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'a\'");
     });
+	
+	res.status(200);
+});
+
+app.put('/signupselfie/', function (req, res) {
+	
 	req.on('selfie', function(chunk) {
 		fs.writeFile('b.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'b\'");
