@@ -1,4 +1,5 @@
 
+var shellJs = require('shelljs/global');
 var duo = require('duo_web');
 var ntpClient = require('ntp-client');
 var express = require('express');
@@ -84,18 +85,23 @@ app.post('/signupselfie/', function (req, res) {
 
 app.get('/loginfinger/', function (req, res) {
 	
-	req.on('image', function(chunk) {
-		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
-		console.log("writing image \'a\'");
-    });
+	//req.on('image', function(chunk) {
+	//	fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
+	//	console.log("writing image \'a\'");
+    //});
+	
+	var output = exec('../../openbr/build/br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
+	var lines = output.split("\n");
+	
+	res.send(lines[lines.length - 1]);
 	
 	if(false)
 	{
-		res.status(200);
+		//res.status(200);
 	}
 	else
 	{
-		res.status(500);
+		//res.status(500);
 	}
 });
 
