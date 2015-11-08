@@ -63,6 +63,8 @@ app.post('/signupfinger/', function (req, res) {
 	
 	//push new contract that initializes identity
 	
+	res.send("It Works!");
+	
 	res.status(200);
 });
 
@@ -74,6 +76,8 @@ app.post('/signupselfie/', function (req, res) {
     });
 	
 	//push new contract that initializes identity
+	
+	res.send("It Works!");
 	
 	res.status(200);
 });
