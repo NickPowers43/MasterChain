@@ -1,0 +1,9 @@
+appName: MasterChain
+developer: Blockfinity
+email: blockfinity@gmail.com
+appURL: masterchain.com
+repo: MasterChain
+apiURL: 'https://strato-dev.blockapps.net'
+transferGasLimit: '21000'
+contractGasLimit: '10000000'
+gasPrice: '50000000000'
