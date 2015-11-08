@@ -2,8 +2,8 @@
 
 //our code
 
+//var Duo = require('duo');
 var Solidity = require('blockapps-js').Solidity
-var Duo = require('duo_nodejs');
 var shellJs = require('shelljs/global');
 var duo = require('duo_web');
 var ntpClient = require('ntp-client');
@@ -75,7 +75,7 @@ app.post('/signupfinger/', function (req, res) {
 		contract.state.Identity(1, [1],1,1,[1],1,1,1,1).callFrom(privkey);
 	});
 	
-	Duo.sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "useacustomerprovidedapplicationsecretkey", "needham.patrick@gmail.com");
+	//Duo.sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "useacustomerprovidedapplicationsecretkey", "needham.patrick@gmail.com");
 	
 	console.log(req.body);
 	console.log(req.params);
