@@ -1,19 +1,37 @@
-contract Array {
-  mapping (address => uint) stake; // percentages by address (basically)
-  address[] stakeHolders; // to iterate over
-  address holdingTheBag; // last arrival to the party
+contract Identity {
 
-  uint numStakeHolders;
-  uint currentStake;
-  uint sumStake;
+  uint pan;
   
-  function Ponzi() {
-    currentStake = 100;  /* the number doesn't really matter, payout computed by ratio anyway */
-    sumStake = 0;
-    numStakeHolders = 0;
+  uint[] selfie;
+  uint selfieWidth;
+  uint selfieHeight;
+  
+  uint[] fp;
+  uint fpWidth;
+  uint fpHeight;
+  
+  uint dlNumber;
+  
+  uint fico;
+  
+  function Identity(uint pan_, uint[] selfie_, uint selfieWidth_, uint selfieHeight_, uint[] fp_, uint fpWidth_, uint fpHeight_, uint dlNumber_, uint fico_) {
+    
+	pan = pan_;
+	
+	selfie = selfie_;
+	selfieWidth = selfieWidth_;
+	selfieHeight = selfieHeight_;
+	
+	fp = fp_;
+	fpWidth = fpWidth_;
+	fpHeight = fpHeight_;
+	
+	dlNumber = dlNumber_;
+	
+	fico = fico_;
   }
 
-  function addStakeHolder(address stakeholder) {
+  function getSelfie() returns (uint[] selfie){
     stake[stakeholder] = currentStake;
 
     stakeHolders.length = numStakeHolders+1;
