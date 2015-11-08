@@ -57,6 +57,10 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
 
 app.post('/signupfinger/', function (req, res) {
 	
+	console.log(req.body);
+	console.log(req.params);
+	console.log(req.query);
+	
 	req.on('image', function(chunk) {
 		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
 		console.log("writing image \'a\'");
