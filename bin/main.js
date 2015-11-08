@@ -27,6 +27,7 @@ var Transaction = api.ethbase.Transaction;
 var units = api.ethbase.Units;
 var Int = api.ethbase.Int;
 
+
 function main (){
     var cmdArr = cmd.argv._;
     if (cmdArr[0] == "init") {

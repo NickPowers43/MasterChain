@@ -1,3 +1,6 @@
+
+var duo = require('duo_nodejs');
+var ntpClient = require('ntp-client');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var session = require('express-session');
@@ -40,6 +43,16 @@ app.use('/contracts', contract);
 app.use('/examples', examples);
 
 app.use('/css', express.static('css'));
+
+ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
+    if(err) {
+        console.error(err);
+        return;
+    }
+ 
+    console.log("Current time : ");
+    console.log(date);
+});
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
