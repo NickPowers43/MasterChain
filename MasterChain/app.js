@@ -28,8 +28,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(logger('dev'));
 
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(session({resave: true, 
@@ -54,9 +54,37 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
     console.log(date);
 });
 
+app.put('/signup/', function (req, res) {
+	
+	req.on('finger', function(chunk) {
+		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
+		console.log("writing image \'a\'");
+    });
+	req.on('selfie', function(chunk) {
+		fs.writeFile('b.bmp', chunk, function (err) { if(err) throw err; });
+		console.log("writing image \'b\'");
+    });
+	
+	res.status(200);
+});
+
+app.put('/login/', function (req, res) {
+	
+	if(false)
+	{
+		res.status(200);
+	}
+	else
+	{
+		res.status(500);
+	}
+});
+
 var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
 
   console.log('bloc is listening on http://%s:%s', host, port);
+  
+  
 });
