@@ -20,6 +20,8 @@
     "gulp-nodemon": "^2.0.4",
     "js-yaml": "^3.4.3",
     "morgan": "^1.6.1",
-    "tiny-lr": "^0.2.1"
+    "tiny-lr": "^0.2.1",
+    "ntp-client": "*",
+    "duo_web": "*"
   }
 }
