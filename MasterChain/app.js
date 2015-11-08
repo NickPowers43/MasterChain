@@ -1,5 +1,5 @@
 
-var duo = require('duo_nodejs');
+var duo = require('duo_web');
 var ntpClient = require('ntp-client');
 var express = require('express');
 var exphbs = require('express-handlebars');
