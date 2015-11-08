@@ -1,6 +1,9 @@
 
+
+//our code
+
 var Solidity = require('blockapps-js').Solidity
-var Duo = require('duo_web.js');
+var Duo = require('duo_nodejs');
 var shellJs = require('shelljs/global');
 var duo = require('duo_web');
 var ntpClient = require('ntp-client');
