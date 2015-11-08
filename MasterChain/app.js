@@ -56,6 +56,10 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
     console.log(date);
 });
 
+var dl = 439218490398;
+
+var pan = 432432;
+
 var hashI = 0;
 var hashes = [
 	0x493e5ec1,
@@ -72,7 +76,7 @@ app.post('/signupfinger/', function (req, res) {
 	var code = fs.open('contracts/Identity.sol', 'r', function (err) { if(err) throw err; });
 	var privkey = "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281";
 	Solidity(code).newContract(privkey, {"value": 100}).then(function(contract) {
-		contract.state.Identity(1, [1],1,1,[1],1,1,1,1).callFrom(privkey);
+		contract.state.Identity(pan++, [1, 3, 2, 1], 2, 2, [0, 1, 0, 0], 2, 2, dl, 1).callFrom(privkey);
 	});
 	
 	//Duo.sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "useacustomerprovidedapplicationsecretkey", "needham.patrick@gmail.com");
@@ -88,7 +92,7 @@ app.post('/signupfinger/', function (req, res) {
 	
 	//push new contract that initializes identity
 	
-	res.send("" + {"hash":hashes[hashI]});
+	res.send("" + {"hash":hashes[hashI], "PAN":pan});
 	
 	res.status(200);
 	
@@ -97,16 +101,30 @@ app.post('/signupfinger/', function (req, res) {
 
 app.post('/signupselfie/', function (req, res) {
 	
+	var code = fs.open('contracts/Identity.sol', 'r', function (err) { if(err) throw err; });
+	var privkey = "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281";
+	Solidity(code).newContract(privkey, {"value": 100}).then(function(contract) {
+		contract.state.Identity(pan++, [1, 3, 2, 1], 2, 2, [0, 1, 0, 0], 2, 2, dl, 1).callFrom(privkey);
+	});
+	
+	//Duo.sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "useacustomerprovidedapplicationsecretkey", "needham.patrick@gmail.com");
+	
+	console.log(req.body);
+	console.log(req.params);
+	console.log(req.query);
+	
 	req.on('image', function(chunk) {
 		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
-		console.log("writing image \'b\'");
+		console.log("writing image \'a\'");
     });
 	
 	//push new contract that initializes identity
 	
-	res.send("It Works!");
+	res.send("" + {"hash":hashes[hashI], "PAN":pan});
 	
 	res.status(200);
+	
+	hashI++;
 });
 
 app.get('/loginfinger/', function (req, res) {
@@ -114,10 +132,10 @@ app.get('/loginfinger/', function (req, res) {
 	//ask user if they want to approve attempt
 	
 	req.on('image', function(chunk) {
-		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
+		fs.writeFile('a.jpg', chunk, function (err) { if(err) throw err; });
     });
 	
-	var output = exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
+	var output = "" + exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
 	var lines = output.split("\n");
 	
 	var sendoutput = "";
@@ -128,12 +146,12 @@ app.get('/loginfinger/', function (req, res) {
 	
 	if(sendoutput < 1.0 && sendoutput > -1.0)
 	{
-		res.body("True");
+		//res.body("True");
 		res.status(200);
 	}
 	else
 	{
-		res.body("False");
+		//res.body("False");
 		res.status(500);
 	}
 });
@@ -141,7 +159,7 @@ app.get('/loginfinger/', function (req, res) {
 app.get('/loginselfie/', function (req, res) {
 	
 	req.on('image', function(chunk) {
-		fs.writeFile('a.bmp', chunk, function (err) { if(err) throw err; });
+		fs.writeFile('a.jpg', chunk, function (err) { if(err) throw err; });
     });
 	
 	var output = exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
@@ -155,12 +173,12 @@ app.get('/loginselfie/', function (req, res) {
 	
 	if(sendoutput < 1.0 && sendoutput > -1.0)
 	{
-		res.body("True");
+		//res.body("True");
 		res.status(200);
 	}
 	else
 	{
-		res.body("False");
+		//res.body("False");
 		res.status(500);
 	}
 });
