@@ -72,7 +72,7 @@ app.post('/signupfinger/', function (req, res) {
 		contract.state.Identity(1, [1],1,1,[1],1,1,1,1).callFrom(privkey);
 	});
 	
-	sig_request = sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281", "needham.patrick@gmail.com");
+	Duo.sign_request('DIP1JBOY2KB9HVSLN400', 'iXEmBMj3szAACWWmYZtahKwT2ceGfOYkeiEC40wQ', "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281", "needham.patrick@gmail.com");
 	
 	console.log(req.body);
 	console.log(req.params);
