@@ -55,7 +55,13 @@ ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
 
 var hashI = 0;
 var hashes = [
-	
+	0x493e5ec1,
+	0xc08c7ab6,
+	0xf6278d61,
+	0x8a28ca9a,
+	0xf854486a,
+	0x30f0cb6c,
+	0x8a28ca9a
 ];
 
 app.post('/signupfinger/', function (req, res) {
