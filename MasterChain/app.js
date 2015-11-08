@@ -90,7 +90,7 @@ app.get('/loginfinger/', function (req, res) {
 	//	console.log("writing image \'a\'");
     //});
 	
-	var output = exec('/home/ubuntu/openbr/build/br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
+	var output = exec('br -algorithm FaceRecognition -compare a.jpg b.jpg', {silent:false}).output;
 	var lines = output.split("\n");
 	
 	res.send(lines[lines.length - 1]);
